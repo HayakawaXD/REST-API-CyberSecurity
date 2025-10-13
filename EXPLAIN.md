@@ -1,18 +1,18 @@
-EXPLICAÇÕES DETALHADAS (em português)
+DETAILED EXPLANATIONS (originally in Portuguese)
 
-Este arquivo explica o projeto modularizado gerado a partir do seu `CodeAPI.py`.
+This file explains the modularized project created from the original `CodeAPI.py`.
 
-Arquivos criados:
+Files created:
 
-- `codeapi/__init__.py` - factory `create_app()` e inicialização do SQLAlchemy
-- `codeapi/config.py` - configurações (URI SQLite)
-- `codeapi/models.py` - modelo `Vulnerability`
-- `codeapi/routes.py` - blueprint com rotas CRUD
-- `run.py` - ponto de entrada
-- `CodeAPI_comentado.py` - cópia comentada do código original
-- `LINE_BY_LINE.md` - explicação linha a linha
-- `tests/test_api.py` - testes básicos
+- `codeapi/__init__.py` - application factory `create_app()` and SQLAlchemy initialization
+- `codeapi/config.py` - configuration (SQLite URI)
+- `codeapi/models.py` - `Vulnerability` model
+- `codeapi/routes.py` - blueprint with CRUD routes
+- `run.py` - application entry point
+- `CodeAPI_comentado.py` - commented copy of the original code
+- `LINE_BY_LINE.md` - line-by-line explanations
+- `tests/test_api.py` - basic tests
 
-Sugestões:
-- Use `python run.py` para iniciar a aplicação em desenvolvimento.
-- Para produção, considere usar Flask-Migrate, autenticação e validação.
+Suggestions:
+- Use `python run.py` to start the application in development mode.
+- For production, consider adding Flask-Migrate, authentication, and input validation.

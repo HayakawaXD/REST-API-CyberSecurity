@@ -24,7 +24,68 @@ Instalação (Windows PowerShell)
 ```powershell
 # REST-API-CyberSecurity
 
-Reference project: a small Flask REST API to manage vulnerabilities. This README is intentionally comprehensive — it covers project architecture, how to run the project, usage examples (PowerShell, curl, Python), testing, deployment suggestions, and explanations of each API part.
+Simple Flask API to manage vulnerabilities (CRUD).
+
+Repository contents
+
+- `CodeAPI.py` - original monolithic version of the API (starting point).
+- `codeapi/` - modularized package containing the application:
+  - `__init__.py` - factory and app initialization
+  - `config.py` - configuration (SQLite)
+  - `models.py` - `Vulnerability` model
+  - `routes.py` - routes and API logic
+- `run.py` - entry point to run the app (factory)
+- `tests/` - automated tests using pytest
+- `EXPLAIN.md`, `LINE_BY_LINE.md`, `CodeAPI_comentado.py` - documentation and detailed explanations
+
+Requirements
+
+- Python 3.8+
+- Dependencies listed in `requirements.txt` and `requirements-dev.txt`.
+
+Installation (Windows PowerShell)
+
+```powershell
+cd "d:\VSCode\REST API"
+python -m venv .venv; .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+```
+
+Running the application
+
+```powershell
+python run.py
+# or
+python CodeAPI.py
+```
+
+The API will be available at `http://127.0.0.1:5000/`.
+
+Endpoints
+
+- `GET /` — welcome message
+- `GET /vulnerabilities` — list all vulnerabilities
+- `GET /vulnerabilities/<id>` — get vulnerability by id
+- `POST /vulnerabilities` — create a vulnerability (JSON: `name`, `affected_system`, `severity`)
+- `PUT /vulnerabilities/<id>` — update a vulnerability (partial update allowed)
+- `DELETE /vulnerabilities/<id>` — delete a vulnerability
+
+Tests
+
+```powershell
+pytest
+```
+
+Notes and recommendations
+
+- In production, remove `debug=True` and use a WSGI server (gunicorn/uwsgi).
+- Use Flask-Migrate for database migrations instead of `db.create_all()`.
+- Validate inputs with Marshmallow/Pydantic before persisting.
+
+License
+
+Add the desired license (e.g., MIT) to the repository before making it public.
 
 ---
 
