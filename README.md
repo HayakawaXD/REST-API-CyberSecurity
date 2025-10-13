@@ -77,15 +77,9 @@ Tests
 pytest
 ```
 
-Notes and recommendations
-
-- In production, remove `debug=True` and use a WSGI server (gunicorn/uwsgi).
-- Use Flask-Migrate for database migrations instead of `db.create_all()`.
-- Validate inputs with Marshmallow/Pydantic before persisting.
-
 License
 
-Add the desired license (e.g., MIT) to the repository before making it public.
+This project is licensed under the MIT License — see the included `LICENSE` file for the full text.
 
 ---
 
