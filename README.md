@@ -390,5 +390,3 @@ A: Run from the project root (where `run.py` is) or adjust `PYTHONPATH`. Activat
 
 Q: How to clear the database data?
 A: Stop the application and remove `Security.db` (backup first if needed). When restarted (and if `db.create_all()` runs), tables will be recreated, but there are no migration histories.
-
----
