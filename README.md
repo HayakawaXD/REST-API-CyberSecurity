@@ -392,24 +392,3 @@ Q: How to clear the database data?
 A: Stop the application and remove `Security.db` (backup first if needed). When restarted (and if `db.create_all()` runs), tables will be recreated, but there are no migration histories.
 
 ---
-
-## Quick lookup (where to find things)
-
-- API routes: `codeapi/routes.py`
-- Model: `codeapi/models.py`
-- App factory: `codeapi/__init__.py`
-- Runner: `run.py`
-- Tests: `tests/test_api.py`
-- Extra docs: `EXPLAIN.md`, `LINE_BY_LINE.md`, `CodeAPI_comentado.py`
-
----
-
-## Roadmap (short)
-
-- [x] Modularize app (done)
-- [x] Detailed documentation (this README)
-- [x] Basic tests (pytest)
-- [ ] Add migrations (Flask-Migrate)
-- [ ] Authentication (JWT)
-- [ ] CI/CD (GitHub Actions)
-- [ ] Dockerfile and publishable images
