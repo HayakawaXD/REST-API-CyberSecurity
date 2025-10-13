@@ -1,29 +1,5 @@
 # REST-API-CyberSecurity
 
-API simples em Flask para gerenciar vulnerabilidades (CRUD).
-
-Conteúdo do repositório
-
-- `CodeAPI.py` - versão monolítica original da API (ponto de partida).
-- `codeapi/` - pacote modularizado com aplicação:
-  - `__init__.py` - factory e inicialização do app
-  - `config.py` - configurações (SQLite)
-  - `models.py` - modelo `Vulnerability`
-  - `routes.py` - rotas e lógica da API
-- `run.py` - ponto de entrada para executar a app (factory)
-- `tests/` - testes automatizados com pytest
-- `EXPLAIN.md`, `LINE_BY_LINE.md`, `CodeAPI_comentado.py` - documentação e explicações detalhadas
-
-Requisitos
-
-- Python 3.8+
-- Dependências listadas em `requirements.txt` e `requirements-dev.txt`.
-
-Instalação (Windows PowerShell)
-
-```powershell
-# REST-API-CyberSecurity
-
 Simple Flask API to manage vulnerabilities (CRUD).
 
 Repository contents
@@ -44,6 +20,7 @@ Requirements
 - Dependencies listed in `requirements.txt` and `requirements-dev.txt`.
 
 Installation (Windows PowerShell)
+
 
 ```powershell
 cd "d:\VSCode\REST API"
@@ -436,18 +413,3 @@ A: Stop the application and remove `Security.db` (backup first if needed). When 
 - [ ] Authentication (JWT)
 - [ ] CI/CD (GitHub Actions)
 - [ ] Dockerfile and publishable images
-
----
-
-## License
-
-This repository uses the MIT license by default — adapt as needed. (I can add a `LICENSE` file with the MIT text if you want.)
-
----
-
-If you want, I can now:
-- Commit this English `README.md` and push it to the remote repository you configured,
-- Add a `LICENSE` file with MIT text,
-- Create a GitHub Actions workflow to run tests on push/PR.
-
-Tell me which action you want me to perform next.
