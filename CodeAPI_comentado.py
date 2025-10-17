@@ -1,32 +1,32 @@
-# Código original comentado linha-a-linha (em português)
+# Original code commented line-by-line (in Portuguese)
 
-from flask import Flask, jsonify, request  # importa Flask e utilitários para JSON e requisições
-from flask_sqlalchemy import SQLAlchemy  # integra SQLAlchemy ao Flask
+from flask import Flask, jsonify, request  # import Flask and utilities for JSON and requests
+from flask_sqlalchemy import SQLAlchemy  # integrate SQLAlchemy into Flask
 
-# Cria a aplicação Flask
+# Create the Flask application
 app = Flask(__name__)
 
-# Configuração do banco de dados: usa SQLite apontando para o arquivo Security.db
+# Database configuration: uses SQLite pointing to the Security.db file
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Security.db"
 
-# Instancia o SQLAlchemy vinculando à app
+# Instantiate SQLAlchemy by linking to the app
 db = SQLAlchemy(app)
 
 
-# Definição do modelo Vulnerability (tabela no banco)
+# Definition of the Vulnerability model (table in the database)
 class Vulnerability(db.Model):
     # id: chave primária inteira
     id = db.Column(db.Integer, primary_key=True)
-    # name: nome da vulnerabilidade (string até 100 caracteres), não nulo
+    # name: name of the vulnerability (string up to 100 characters), not null
     name = db.Column(db.String(100), nullable=False)
-    # affected_system: qual sistema é afetado (string até 100 chars), não nulo
+    # affected_system: which system is affected (string up to 100 chars), not null
     affected_system = db.Column(db.String(100), nullable=False)
-    # severity: severidade como número (float), não nulo
+    # severity: severity as a number (float), not null
     severity = db.Column(db.Float, nullable=False)
 
     def to_dict(self):
-        # Converte a instância do modelo para um dicionário Python simples
-        # Isso facilita serializar para JSON com jsonify
+        # Converts the model instance to a simple Python dictionary
+        # This makes it easier to serialize to JSON with jsonify
         return {
             "id": self.id,
             "name": self.name,
@@ -35,8 +35,8 @@ class Vulnerability(db.Model):
         }
 
 
-# Cria as tabelas no banco se não existirem (apenas para desenvolvimento simples).
-# Em produção, prefira usar migrações (Flask-Migrate/Alembic) em vez de create_all.
+# Creates tables in the database if they don't exist (for simple development only).
+# In production, prefer using migrations (Flask-Migrate/Alembic) instead of create_all.
 with app.app_context():
     db.create_all()
 
@@ -44,38 +44,38 @@ with app.app_context():
 # Rotas da API
 @app.route("/")
 def home():
-    # Rota raiz que retorna uma mensagem de boas-vindas em JSON
+    # Root route that returns a welcome message in JSON
     return jsonify(message="Welcome to the Cybersecurity API!")
 
 
 @app.route("/vulnerabilities", methods=["GET"])
 def get_vulnerabilities():
-    # Busca todas as vulnerabilidades na tabela
+    # Search all vulnerabilities in the table
     vulnerabilities = Vulnerability.query.all()
-    # Retorna uma lista de dicionários (um por vulnerabilidade)
+    # Returns a list of dictionaries (one per vulnerability)
     return jsonify([v.to_dict() for v in vulnerabilities])
 
 
 @app.route("/vulnerabilities/<int:id>", methods=["GET"])
 def get_vulnerability(id):
-    # Busca uma vulnerabilidade pelo ID (chave primária)
+    # Search for a vulnerability by ID (primary key)
     vuln = Vulnerability.query.get(id)
     if vuln:
-        # Se encontrada, retorna o objeto serializado
+        # If found, return the serialized object
         return jsonify(vuln.to_dict())
     else:
         # Se não encontrada, retorna erro 404 com mensagem
         return jsonify(error="Vulnerability not found"), 404
  
-# POST -> criar nova vulnerabilidade
+# POST -> create new vulnerability
 @app.route("/vulnerabilities", methods=["POST"])
 def add_vulnerability():
-    # Lê o JSON enviado no corpo da requisição
+    # Read the JSON sent in the request body
     data = request.get_json()
 
-    # Observação: aqui não há validação robusta. Se `data` for None ou
-    # campos estiverem faltando, isso levantará uma exceção KeyError.
-    # Em produção valide os dados antes de usá-los.
+    # Note: There is no robust validation here. If `data` is None or
+    # fields are missing, this will raise a KeyError exception.
+    # In production, validate data before using it.
     new_vuln = Vulnerability(name=data["name"], affected_system=data["affected_system"], severity=data["severity"])
 
     # Original code commented line-by-line (translated to English)
